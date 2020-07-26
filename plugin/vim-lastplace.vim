@@ -51,6 +51,10 @@ fu! s:lastplace()
 		return
 	endtry
 
+	if line(".") == line("$")
+		return
+	endif
+
 	if line("'\"") > 0 && line("'\"") <= line("$")
 		"if the last edit position is set and is less than the
 		"number of lines in this buffer.
