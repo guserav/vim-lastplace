@@ -27,6 +27,13 @@ if !exists('g:lastplace_ignore_buftype')
 endif
 
 fu! s:lastplace()
+	if exists('b:lastplace_buffer_opened') && b:lastplace_buffer_opened
+		"prevent the cursor from being set a second time after
+		"revisiting the hidden buffer
+		return
+	endif
+	let b:lastplace_buffer_opened = 1
+
 	if index(split(g:lastplace_ignore_buftype, ","), &buftype) != -1 
 		return
    	endif
